@@ -2,16 +2,11 @@
 
 """
 cfx2xc.py
-
 Homepage: http://code.google.com/p/cfx2xc/
-
 Convert a CursorFX theme to an X11 Cursor theme
-
 by Wang Lu <coolwanglu(a)gmail.com>
 first version at 2011.04.04
-
 Based on the analysis from http://hi.baidu.com/fatfish888/blog/item/3592500392c27808738da516.html
-
 *** Requirements: python, python image library, xcursorgen, tar ***
 """
 
@@ -372,7 +367,7 @@ size of script: %u\n'\
             assert size_of_image == image_width * image_height * 4
 
             # crop images
-            img = Image.fromstring("RGBA", (image_width, image_height), data[cur_pos+size_of_header_with_script:cur_pos+size_of_header_and_image], "raw", "BGRA", 0, -1)
+            img = Image.frombytes("RGBA", (image_width, image_height), data[cur_pos+size_of_header_with_script:cur_pos+size_of_header_and_image], "raw", "BGRA", 0, -1)
             img.save('%s/img%d-%d.png'%(ORIGINAL_DIR, image_index, cursor_status))
 
             frame_width = image_width / frame_count
@@ -518,4 +513,3 @@ if __name__ == '__main__':
         sys.exit(-1)
 
     CursorFX().convert(sys.argv[1])
-
